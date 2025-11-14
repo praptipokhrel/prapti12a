@@ -1,12 +1,169 @@
-<html>
-  <head> Prapti 12 A </head>
-  <body>
-    <table>
-      <tr>
-        <th>SN</th>
-        <th>NAME</th>
-        <th>CONTACT</th>
-      </tr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Data Normalization</title>
+</head>
+<body>
+    <h1>Normalization Stages of Student Data (1NF, 2NF, 3NF)</h1>
+
+    <!-- 1NF Table -->
+    <h2>First Normal Form (1NF)</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Subjects</th>
+                <th>Teacher</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Prapti</td>
+                <td>Math, Science</td>
+                <td>Mr. A, Mrs. B</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Shreeya</td>
+                <td>Math, English</td>
+                <td>Mr. A, Mrs. C</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Prachi</td>
+                <td>Science, English</td>
+                <td>Mrs. B, Mrs. C</td>
+            </tr>
+        </tbody>
     </table>
-  </body>
+
+    <p><strong>Note:</strong> This is not in the best form because subjects and teachers are multi-valued attributes, which violate 1NF (they should be atomic).</p>
+
+    <!-- 2NF Table -->
+    <h2>Second Normal Form (2NF)</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Subject</th>
+                <th>Teacher</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Prapti</td>
+                <td>Math</td>
+                <td>Mr. A</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Prapti</td>
+                <td>Science</td>
+                <td>Mrs. B</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Shreeya</td>
+                <td>Math</td>
+                <td>Mr. A</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Shreeya</td>
+                <td>English</td>
+                <td>Mrs. C</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Prachi</td>
+                <td>Science</td>
+                <td>Mrs. B</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Prachi</td>
+                <td>English</td>
+                <td>Mrs. C</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><strong>Note:</strong> This table is in 2NF as we’ve removed partial dependency. Now, the attributes depend entirely on the primary key (Student ID + Subject).</p>
+
+    <!-- 3NF Table -->
+    <h2>Third Normal Form (3NF)</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Subject</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Prapti</td>
+                <td>Math</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Prapti</td>
+                <td>Science</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Shreeya</td>
+                <td>Math</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Shreeya</td>
+                <td>English</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Prachi</td>
+                <td>Science</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Prachi</td>
+                <td>English</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Teacher Table (Separate)</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Teacher</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Math</td>
+                <td>Mr. A</td>
+            </tr>
+            <tr>
+                <td>Science</td>
+                <td>Mrs. B</td>
+            </tr>
+            <tr>
+                <td>English</td>
+                <td>Mrs. C</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><strong>Note:</strong> This table is now in 3NF, as we've removed transitive dependency. The Teacher information is moved to a separate table, ensuring no non-prime attribute depends on other non-prime attributes.</p>
+</body>
 </html>
